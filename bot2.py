@@ -7,10 +7,14 @@ from asyncio import run
 bot = Bot(token='7281122628:AAGTWPokuierPgxXfIS2AY0wletQyIdjqfk')
 dp = Dispatcher()
 
+# In-memory storage for user language preferences and greeting status
+user_data = {}
+
 # Translation dictionaries
 translations = {
     "rus": {
         "start": "Здравствуйте, {name}",
+        "hello": "Здравствуйте",
         "order": "🛍 Сделать заказ",
         "lang": "🌐 Изменить язык",
         "orders": "📦 Мои заказы",
@@ -24,6 +28,7 @@ translations = {
     },
     "uz": {
         "start": "Assalom alaykum, {name}",
+        "hello": "Assalom alaykum",
         "order": "🛍 Buyurtma berish",
         "lang": "🌐 Tilni o'zgartirish",
         "orders": "📦 Buyurtmalarim",
@@ -39,8 +44,7 @@ translations = {
 
 # Function to get user language (default is 'uz')
 def get_user_language(user_id):
-    # Here you can fetch the user language from a database or any other storage
-    return "rus"  # Default language is Russian
+    return user_data.get(user_id, {}).get("language", "uz")  # Default language is Uzbek
 
 # Function to get translated text
 def t(key, user_id, **kwargs):
@@ -49,7 +53,6 @@ def t(key, user_id, **kwargs):
 
 # Define keyboard layout function
 def get_keyboard(user_id):
-    language = get_user_language(user_id)
     return ReplyKeyboardMarkup(
         keyboard=[
             [
@@ -68,7 +71,6 @@ def get_keyboard(user_id):
     )
 
 def get_set_keyboard(user_id):
-    language = get_user_language(user_id)
     return ReplyKeyboardMarkup(
         keyboard=[
             [
@@ -82,7 +84,6 @@ def get_set_keyboard(user_id):
     )
 
 def get_lang_keyboard(user_id):
-    language = get_user_language(user_id)
     return ReplyKeyboardMarkup(
         keyboard=[
             [
@@ -98,7 +99,6 @@ def get_lang_keyboard(user_id):
 
 # Define category keyboard layout function
 def get_category_keyboard(user_id):
-    language = get_user_language(user_id)
     return ReplyKeyboardMarkup(
         keyboard=[
             [
@@ -123,31 +123,50 @@ def get_category_keyboard(user_id):
 # Start command handler
 @dp.message(Command(commands=["start"]))
 async def start_command(message: types.Message):
+    user_id = message.from_user.id
     user_name = message.from_user.first_name
-    await message.answer(t("start", message.from_user.id, name=user_name), reply_markup=get_keyboard(message.from_user.id))
+    if user_id not in user_data:
+        user_data[user_id] = {"language": "uz", "greeted": False}
+
+    if not user_data[user_id]["greeted"]:
+        await message.answer(t("start", user_id, name=user_name), reply_markup=get_keyboard(user_id))
+        user_data[user_id]["greeted"] = True
+    else:
+        await message.answer(t("hello", user_id), reply_markup=get_keyboard(user_id))
 
 # Buyurtma berish handler
-@dp.message(lambda message: message.text in ["🛍 Buyurtma berish", "🛍 Сделать заказ"])
+@dp.message(lambda message: message.text in [t("order", message.from_user.id)])
 async def handle_buyurtma_berish(message: types.Message):
     await message.answer(t("choose_category", message.from_user.id), reply_markup=get_category_keyboard(message.from_user.id))
 
 # Biz haqimizda handler
-@dp.message(lambda message: message.text in ["ℹ️ Biz haqimizda", "ℹ️ О нас"])
+@dp.message(lambda message: message.text in [t("about", message.from_user.id)])
 async def handle_biz_haqimizda(message: types.Message):
     await message.answer(t("about_us", message.from_user.id), reply_markup=get_keyboard(message.from_user.id))
 
 # Orqaga handler
-@dp.message(lambda message: message.text in ["⬅️ Orqaga", "⬅️ Назад"])
+@dp.message(lambda message: message.text in [t("back", message.from_user.id)])
 async def handle_orqaga(message: types.Message):
-    await message.answer("Orqaga qaytdingiz", reply_markup=get_keyboard(message.from_user.id))
+    await message.answer(t("main_menu", message.from_user.id), reply_markup=get_keyboard(message.from_user.id))
 
-@dp.message(lambda message: message.text in ["⚙️ Sozlamalar", "⚙️ Настройки"])
+@dp.message(lambda message: message.text in [t("settings", message.from_user.id)])
 async def handle_settings(message: types.Message):
-    await message.answer("⚙️ Sozlamalar", reply_markup=get_set_keyboard(message.from_user.id))
+    await message.answer(t("settings", message.from_user.id), reply_markup=get_set_keyboard(message.from_user.id))
 
-@dp.message(lambda message: message.text in ["🌐 Tilni o'zgartirish", "🌐 Изменить язык"])
+@dp.message(lambda message: message.text in [t("lang", message.from_user.id)])
 async def handle_langs(message: types.Message):
-    await message.answer("Choose", reply_markup=get_lang_keyboard(message.from_user.id))
+    await message.answer("Choose your language", reply_markup=get_lang_keyboard(message.from_user.id))
+
+# Language change handlers
+@dp.message(lambda message: message.text == "🇺🇿 O'zbekcha")
+async def switch_to_uzbek(message: types.Message):
+    user_data[message.from_user.id]["language"] = "uz"
+    await message.answer("Til o'zbek tiliga o'zgartirildi.", reply_markup=get_keyboard(message.from_user.id))
+
+@dp.message(lambda message: message.text == "🇷🇺 Русский")
+async def switch_to_russian(message: types.Message):
+    user_data[message.from_user.id]["language"] = "rus"
+    await message.answer("Язык изменен на русский.", reply_markup=get_keyboard(message.from_user.id))
 
 # Main function
 async def main():
@@ -158,6 +177,8 @@ async def main():
     dp.message.register(handle_orqaga)
     dp.message.register(handle_settings)
     dp.message.register(handle_langs)
+    dp.message.register(switch_to_uzbek)
+    dp.message.register(switch_to_russian)
 
     # Start polling
     await dp.start_polling(bot)
