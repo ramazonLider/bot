@@ -24,7 +24,9 @@ translations = {
         "choose_category": "С чего начнем?",
         "back": "⬅️ Назад",
         "main_menu": "🏠 Главное меню",
-        "about_us": "Наша семья😊 очень давно занимается ресторанной кулинарией🥗🍕🍟🍣🍱. Мы известны великолепной аутентичной кухней, профессиональным шеф-поваром👨🏻‍🍳 и преданным персоналом👩‍🍳🧑‍🍳. Выберите любое блюдо из меню👨‍💻, которое поможет вам ощутить настоящий вкус пиццы🍕❤️."
+        "about_us": "Наша семья😊 очень давно занимается ресторанной кулинарией🥗🍕🍟🍣🍱. Мы известны великолепной аутентичной кухней, профессиональным шеф-поваром👨🏻‍🍳 и преданным персоналом👩‍🍳🧑‍🍳. Выберите любое блюдо из меню👨‍💻, которое поможет вам ощутить настоящий вкус пиццы🍕❤️.",
+        "comment_prompt": "Для оформления заказа воспользуйтесь кнопкой «Заказать» в главном меню. \n Мы очень ценим ваш отзыв! После оформления заказа вы можете оставить здесь свои комментарии и отзывы.:",
+        "comment_received": "Спасибо за ваш отзыв!",
     },
     "uz": {
         "start": "Assalom alaykum, {name}",
@@ -38,7 +40,9 @@ translations = {
         "choose_category": "Nimadan boshlaymiz?",
         "back": "⬅️ Orqaga",
         "main_menu": "🏠 Bosh menyu",
-        "about_us": "Наша семья😊очень давно занимается ресторанной кулинарией🥗🍕🍟🍣🍱 Мы известны великолепной аутентичной кухней, профессиональным шеф-поваром👨🏻‍🍳 и преданным персоналом👩‍🍳🧑‍🍳.Выберите любое блюдо из меню👨‍💻, которое поможет вам ощутить настоящий вкус пиццы🍕❤️."
+        "about_us": "Наша семья😊очень давно занимается ресторанной кулинарией🥗🍕🍟🍣🍱 Мы известны великолепной аутентичной кухней, профессиональным шеф-поваром👨🏻‍🍳 и преданным персоналом👩‍🍳🧑‍🍳.Выберите любое блюдо из меню👨‍💻, которое поможет вам ощутить настоящий вкус пиццы🍕❤️.",
+        "comment_prompt": "Buyurtma berish uchun asosiy menyudagi “Buyurtma” tugmasidan foydalaning. \n Biz sizning fikr-mulohazalaringizni juda qadrlaymiz! Buyurtma berganingizdan so'ng, o'z fikr va mulohazalaringizni shu yerda qoldirishingiz mumkin",
+        "comment_received": "Fikringiz uchun rahmat!",
     }
 }
 
@@ -66,6 +70,16 @@ def get_keyboard(user_id):
                 KeyboardButton(text=t("about", user_id)),
                 KeyboardButton(text=t("feedback", user_id))
             ]
+        ],
+        resize_keyboard=True
+    )
+
+def get_orqaga(user_id):
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text=t("back", user_id)),
+            ],
         ],
         resize_keyboard=True
     )
@@ -126,7 +140,7 @@ async def start_command(message: types.Message):
     user_id = message.from_user.id
     user_name = message.from_user.first_name
     if user_id not in user_data:
-        user_data[user_id] = {"language": "uz", "greeted": False}
+        user_data[user_id] = {"language": "uz", "greeted": False, "waiting_for_comment": False}
 
     if not user_data[user_id]["greeted"]:
         await message.answer(t("start", user_id, name=user_name), reply_markup=get_keyboard(user_id))
@@ -168,6 +182,19 @@ async def switch_to_russian(message: types.Message):
     user_data[message.from_user.id]["language"] = "rus"
     await message.answer("Язык изменен на русский.", reply_markup=get_keyboard(message.from_user.id))
 
+# Feedback handler
+@dp.message(lambda message: message.text in [t("feedback", message.from_user.id)])
+async def handle_feedback(message: types.Message):
+    user_data[message.from_user.id]["waiting_for_comment"] = True
+    await message.answer(t("comment_prompt", message.from_user.id), reply_markup=get_orqaga(message.from_user.id))
+
+@dp.message(lambda message: user_data.get(message.from_user.id, {}).get("waiting_for_comment", False))
+async def receive_comment(message: types.Message):
+    user_id = message.from_user.id
+    user_data[user_id]["waiting_for_comment"] = False
+    # You can save the comment to a database or perform any other actions here
+    await message.answer(t("comment_received", user_id), reply_markup=get_keyboard(user_id))
+
 # Main function
 async def main():
     # Register handlers
@@ -179,6 +206,8 @@ async def main():
     dp.message.register(handle_langs)
     dp.message.register(switch_to_uzbek)
     dp.message.register(switch_to_russian)
+    dp.message.register(handle_feedback)
+    dp.message.register(receive_comment)
 
     # Start polling
     await dp.start_polling(bot)
