@@ -12,6 +12,7 @@ translations = {
     "rus": {
         "start": "Здравствуйте, {name}",
         "order": "🛍 Сделать заказ",
+        "lang": "🌐 Изменить язык",
         "orders": "📦 Мои заказы",
         "settings": "⚙️ Настройки",
         "about": "ℹ️ О нас",
@@ -24,6 +25,7 @@ translations = {
     "uz": {
         "start": "Assalom alaykum, {name}",
         "order": "🛍 Buyurtma berish",
+        "lang": "🌐 Tilni o'zgartirish",
         "orders": "📦 Buyurtmalarim",
         "settings": "⚙️ Sozlamalar",
         "about": "ℹ️ Biz haqimizda",
@@ -61,6 +63,35 @@ def get_keyboard(user_id):
                 KeyboardButton(text=t("about", user_id)),
                 KeyboardButton(text=t("feedback", user_id))
             ]
+        ],
+        resize_keyboard=True
+    )
+
+def get_set_keyboard(user_id):
+    language = get_user_language(user_id)
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text=t("lang", user_id)),
+            ],
+            [
+                KeyboardButton(text=t("back", user_id)),
+            ],
+        ],
+        resize_keyboard=True
+    )
+
+def get_lang_keyboard(user_id):
+    language = get_user_language(user_id)
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text="🇺🇿 O'zbekcha"),
+                KeyboardButton(text="🇷🇺 Русский"),
+            ],
+            [
+                KeyboardButton(text=t("back", user_id)),
+            ],
         ],
         resize_keyboard=True
     )
@@ -110,6 +141,14 @@ async def handle_biz_haqimizda(message: types.Message):
 async def handle_orqaga(message: types.Message):
     await message.answer("Orqaga qaytdingiz", reply_markup=get_keyboard(message.from_user.id))
 
+@dp.message(lambda message: message.text in ["⚙️ Sozlamalar", "⚙️ Настройки"])
+async def handle_settings(message: types.Message):
+    await message.answer("⚙️ Sozlamalar", reply_markup=get_set_keyboard(message.from_user.id))
+
+@dp.message(lambda message: message.text in ["🌐 Tilni o'zgartirish", "🌐 Изменить язык"])
+async def handle_langs(message: types.Message):
+    await message.answer("Choose", reply_markup=get_lang_keyboard(message.from_user.id))
+
 # Main function
 async def main():
     # Register handlers
@@ -117,6 +156,8 @@ async def main():
     dp.message.register(handle_buyurtma_berish)
     dp.message.register(handle_biz_haqimizda)
     dp.message.register(handle_orqaga)
+    dp.message.register(handle_settings)
+    dp.message.register(handle_langs)
 
     # Start polling
     await dp.start_polling(bot)
