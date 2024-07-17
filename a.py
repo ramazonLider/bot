@@ -2,6 +2,8 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 from asyncio import run
+from states import Meals
+from aiogram.fsm.context import FSMContext
 
 # Create bot and dispatcher instances
 bot = Bot(token='7281122628:AAGTWPokuierPgxXfIS2AY0wletQyIdjqfk')
@@ -38,12 +40,14 @@ translations = {
             "salads": "Вот список салатов...",
             "desert": "Вот список десертов...",
             "tea": "Вот список чаев..."
-        }
+        },
+        "cart": "📥 Корзина"
     },
     "uz": {
         "tea": "Choylar 🫖",
         "salads": "Salatlar 🥗",
         "desert": "Shirinliklar 🍰",
+        "cart": "📥 Savat",
         "drink": "Ichimliklar 🍷",
         "meal": "Ovqatlar 🍜",
         "start": "Assalom alaykum, {name}",
@@ -147,6 +151,10 @@ def get_meals_keyboard(user_id):
             ],
             [
                 KeyboardButton(text="Mastava"),
+            ],
+            [
+                KeyboardButton(text=t("cart", user_id)),
+                KeyboardButton(text=t("cart", user_id)),
             ],
             [
                 KeyboardButton(text=t("back", user_id)),
@@ -272,18 +280,54 @@ async def handle_feedback(message: types.Message):
 async def receive_comment(message: types.Message):
     user_id = message.from_user.id
     user_data[user_id]["waiting_for_comment"] = False
-    # You can save the comment to a database or perform any other actions here
     await message.answer(t("comment_received", user_id), reply_markup=get_keyboard(user_id))
 
 # Product information handler
 @dp.message(lambda message: message.text in product_info)
-async def handle_product_info(message: types.Message):
-    product = product_info[message.text]
+async def handle_product_info(message: types.Message, state: FSMContext):
+    product_name = message.text
+    product = product_info[product_name]
     description = product["description"]
     image_url = product["image_url"]
     
     await message.answer(description, reply_markup=get_meals_keyboard(message.from_user.id))
     await message.answer_photo(photo=image_url)
+    await message.answer("Enter quantity:")
+    
+    # Store the selected product in state
+    await state.update_data(product=product_name)
+    await state.set_state(Meals.quantity)
+
+
+@dp.message(lambda message: message.text.isdigit())
+async def handle_quantity(message: types.Message, state: FSMContext):
+    state.set_state(Meals.quantity)
+    quantity = int(message.text)
+    
+    # Retrieve stored product name from state
+    data = await state.get_data()
+    product_name = data.get('product', '')
+
+    # Update or initialize user's cart in user_data
+    user_id = message.from_user.id
+    if 'cart' not in user_data[user_id]:
+        user_data[user_id]['cart'] = {}
+    
+    user_data[user_id]['cart'][product_name] = quantity
+    
+    await message.answer(f"Added {quantity} {product_name} to your cart.")
+    await state.finish()
+
+@dp.message(lambda message: message.text in [t("cart", message.from_user.id)])
+async def show_cart(message: types.Message):
+    user_id = message.from_user.id
+    if 'cart' in user_data[user_id] and user_data[user_id]['cart']:
+        await message.answer("Here's your cart:")
+        for product, quantity in user_data[user_id]['cart'].items():
+            await message.answer(f"{product}: {quantity}")
+    else:
+        await message.answer("Your cart is empty.")
+
 
 # Main function
 async def main():
@@ -304,6 +348,8 @@ async def main():
     dp.message.register(handle_feedback)
     dp.message.register(receive_comment)
     dp.message.register(handle_product_info)
+    dp.message.register(handle_quantity)
+    dp.message.register(show_cart)
 
     # Start polling
     await dp.start_polling(bot)
