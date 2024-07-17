@@ -3,6 +3,7 @@ from aiogram.filters import Command
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 from asyncio import run
 from states import Meals
+from data import product_info
 from aiogram.fsm.context import FSMContext
 
 # Create bot and dispatcher instances
@@ -24,7 +25,6 @@ translations = {
         "hello": "Здравствуйте",
         "order": "🛍 Сделать заказ",
         "lang": "🌐 Изменить язык",
-        "orders": "📦 Мои заказы",
         "settings": "⚙️ Настройки",
         "about": "ℹ️ О нас",
         "feedback": "✍️ Оставить отзыв",
@@ -54,7 +54,6 @@ translations = {
         "hello": "Assalom alaykum",
         "order": "🛍 Buyurtma berish",
         "lang": "🌐 Tilni o'zgartirish",
-        "orders": "📦 Buyurtmalarim",
         "settings": "⚙️ Sozlamalar",
         "about": "ℹ️ Biz haqimizda",
         "feedback": "✍️ Fikr qoldirish",
@@ -75,21 +74,6 @@ translations = {
 }
 
 # Product information
-product_info = {
-    "Mastava": {
-        "description": "Мастава, цена: 20 000 сум",
-        "image_url": "https://i2.wp.com/rusuz.com/wp-content/uploads/2017/09/Mastava-scaled.jpg?fit=1200%2C800&ssl=1"
-    },
-    "Qaynatma sho'rva(mol go'shti)": {
-        "description": "Qaynatma sho'rva(mol go'shti), цена: 25 000 сум",
-        "image_url": "https://i.ytimg.com/vi/WcNK5w5doxY/maxresdefault.jpg"
-    },
-    "Qaynatma sho'rva(qo'y go'shti)": {
-        "description": "Qaynatma sho'rva(qo'y go'shti), цена: 20 000 сум",
-        "image_url": "https://i.ytimg.com/vi/WcNK5w5doxY/maxresdefault.jpg"
-    },
-    # Add more product details as needed
-}
 
 # Function to get user language (default is 'uz')
 def get_user_language(user_id):
@@ -108,12 +92,38 @@ def get_keyboard(user_id):
                 KeyboardButton(text=t("order", user_id)),
             ],
             [
-                KeyboardButton(text=t("orders", user_id)),
+                KeyboardButton(text=t("cart", user_id)),
                 KeyboardButton(text=t("settings", user_id))
             ],
             [
                 KeyboardButton(text=t("about", user_id)),
                 KeyboardButton(text=t("feedback", user_id))
+            ]
+        ],
+        resize_keyboard=True
+    )
+
+def get_quantity_keyboard(user_id):
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text="1"),
+                KeyboardButton(text="2"),
+                KeyboardButton(text="3"),
+            ],
+            [
+                KeyboardButton(text="4"),
+                KeyboardButton(text="5"),
+                KeyboardButton(text="6")
+            ],
+            [
+                KeyboardButton(text="7"),
+                KeyboardButton(text="8"),
+                KeyboardButton(text="9")
+            ],
+            [
+                KeyboardButton(text=t("cart", user_id)),
+                KeyboardButton(text=t("back", user_id))
             ]
         ],
         resize_keyboard=True
@@ -151,10 +161,71 @@ def get_meals_keyboard(user_id):
             ],
             [
                 KeyboardButton(text="Mastava"),
+                KeyboardButton(text="Frikadelka"),
             ],
             [
-                KeyboardButton(text=t("cart", user_id)),
-                KeyboardButton(text=t("cart", user_id)),
+                KeyboardButton(text="Tovuq lapsha"),
+                KeyboardButton(text="Uyg'ur lag'mon"),
+            ],
+            [
+                KeyboardButton(text="Qovurma lag'mon"),
+                KeyboardButton(text="Ayrim say"),
+            ],
+            [
+                KeyboardButton(text="Go'sht say"),
+                KeyboardButton(text="Sokoro"),
+            ],
+            [
+                KeyboardButton(text="Sumboro"),
+                KeyboardButton(text="Achchiq go'sht"),
+            ],
+            [
+                KeyboardButton(text="Uyg'ur manti"),
+                KeyboardButton(text="Beshbarmoq"),
+            ],
+            [
+                KeyboardButton(text="Qozon kabob"),
+                KeyboardButton(text="Cho'poncha 1kg"),
+            ],
+            [
+                KeyboardButton(text="Jiz 1kg"),
+                KeyboardButton(text="To'y oshi"),
+            ],
+            [
+                KeyboardButton(text="Go'shtli somsa"),
+                KeyboardButton(text="Tovuqli somsa"),
+            ],
+            [
+                KeyboardButton(text="Go'shtli somsa"),
+                KeyboardButton(text="Tovuqli somsa"),
+            ],
+            [
+                KeyboardButton(text="Kartoshkali somsa"),
+                KeyboardButton(text="Bifteks"),
+            ],
+            [
+                KeyboardButton(text="Bistrogen"),
+                KeyboardButton(text="Miraj assorti"),
+            ],
+            [
+                KeyboardButton(text="Tushonka"),
+                KeyboardButton(text="G'ijduvon shashlik"),
+            ],
+            [
+                KeyboardButton(text="Jigar"),
+                KeyboardButton(text="Tovuqli shashlik"),
+            ],
+            [
+                KeyboardButton(text="Tovuq qanoti"),
+                KeyboardButton(text="Chuchvara"),
+            ],
+            [
+                KeyboardButton(text="Tovuqli file"),
+                KeyboardButton(text="Kichkina grill"),
+            ],
+            [
+                KeyboardButton(text="Katta grill"),
+                KeyboardButton(text="Kuksu"),
             ],
             [
                 KeyboardButton(text=t("back", user_id)),
@@ -290,9 +361,11 @@ async def handle_product_info(message: types.Message, state: FSMContext):
     description = product["description"]
     image_url = product["image_url"]
     
-    await message.answer(description, reply_markup=get_meals_keyboard(message.from_user.id))
-    await message.answer_photo(photo=image_url)
-    await message.answer("Enter quantity:")
+    # Send the photo first
+    await message.answer_photo(photo=image_url, caption=description, reply_markup=get_quantity_keyboard(message.from_user.id))
+    
+    # Ask for quantity
+    await message.answer("Sonini tanlang", reply_markup=get_quantity_keyboard(message.from_user.id))
     
     # Store the selected product in state
     await state.update_data(product=product_name)
