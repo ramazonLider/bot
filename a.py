@@ -70,6 +70,23 @@ translations = {
     }
 }
 
+# Product information
+product_info = {
+    "Mastava": {
+        "description": "Мастава, цена: 20 000 сум",
+        "image_url": "https://i2.wp.com/rusuz.com/wp-content/uploads/2017/09/Mastava-scaled.jpg?fit=1200%2C800&ssl=1"
+    },
+    "Qaynatma sho'rva(mol go'shti)": {
+        "description": "Qaynatma sho'rva(mol go'shti), цена: 25 000 сум",
+        "image_url": "https://i.ytimg.com/vi/WcNK5w5doxY/maxresdefault.jpg"
+    },
+    "Qaynatma sho'rva(qo'y go'shti)": {
+        "description": "Qaynatma sho'rva(qo'y go'shti), цена: 20 000 сум",
+        "image_url": "https://i.ytimg.com/vi/WcNK5w5doxY/maxresdefault.jpg"
+    },
+    # Add more product details as needed
+}
+
 # Function to get user language (default is 'uz')
 def get_user_language(user_id):
     return user_data.get(user_id, {}).get("language", "uz")  # Default language is Uzbek
@@ -130,67 +147,6 @@ def get_meals_keyboard(user_id):
             ],
             [
                 KeyboardButton(text="Mastava"),
-                KeyboardButton(text="Frikadelka"),
-            ],
-            [
-                KeyboardButton(text="Tovuqli lapsha"),
-                KeyboardButton(text="Uyg'ur lag'mon"),
-            ],
-            [
-                KeyboardButton(text="Qovurma lag'mon"),
-                KeyboardButton(text="Ayrim say"),
-            ],
-            [
-                KeyboardButton(text="Go'sht say"),
-                KeyboardButton(text="Sokoro"),
-            ],
-            [
-                KeyboardButton(text="Sumboro"),
-                KeyboardButton(text="Achchiq go'sht"),
-            ],
-            [
-                KeyboardButton(text="Uyg'ur manti"),
-                KeyboardButton(text="Beshbarmoq"),
-            ],
-            [
-                KeyboardButton(text="Qozon kabob"),
-                KeyboardButton(text="Cho'poncha"),
-            ],
-            [
-                KeyboardButton(text="Jiz"),
-                KeyboardButton(text="To'y oshi"),
-            ],
-            [
-                KeyboardButton(text="Somsa (go'shtli)"),
-                KeyboardButton(text="Somsa (kartoshkali)"),
-            ],
-            [
-                KeyboardButton(text="Somsa (tovuqli)"),
-                KeyboardButton(text="Bifteks"),
-            ],
-            [
-                KeyboardButton(text="Bistrogen"),
-                KeyboardButton(text="Miraj assorti"),
-            ],
-            [
-                KeyboardButton(text="Tushonka"),
-                KeyboardButton(text="G'ijduvon shashlik"),
-            ],
-            [
-                KeyboardButton(text="Tovuq shashlik"),
-                KeyboardButton(text="Tovuq qanoti"),
-            ],
-            [
-                KeyboardButton(text="Jigar)"),
-                KeyboardButton(text="Chuchvara"),
-            ],
-            [
-                KeyboardButton(text="Tovuqli file"),
-                KeyboardButton(text="Grill (kichkina)"),
-            ],
-            [
-                KeyboardButton(text="Grill (katta"),
-                KeyboardButton(text="Kuksu"),
             ],
             [
                 KeyboardButton(text=t("back", user_id)),
@@ -198,6 +154,7 @@ def get_meals_keyboard(user_id):
         ],
         resize_keyboard=True
     )
+
 
 def get_lang_keyboard(user_id):
     return ReplyKeyboardMarkup(
@@ -318,6 +275,16 @@ async def receive_comment(message: types.Message):
     # You can save the comment to a database or perform any other actions here
     await message.answer(t("comment_received", user_id), reply_markup=get_keyboard(user_id))
 
+# Product information handler
+@dp.message(lambda message: message.text in product_info)
+async def handle_product_info(message: types.Message):
+    product = product_info[message.text]
+    description = product["description"]
+    image_url = product["image_url"]
+    
+    await message.answer(description, reply_markup=get_meals_keyboard(message.from_user.id))
+    await message.answer_photo(photo=image_url)
+
 # Main function
 async def main():
     # Register handlers
@@ -336,6 +303,7 @@ async def main():
     dp.message.register(switch_to_russian)
     dp.message.register(handle_feedback)
     dp.message.register(receive_comment)
+    dp.message.register(handle_product_info)
 
     # Start polling
     await dp.start_polling(bot)
