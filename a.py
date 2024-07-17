@@ -19,7 +19,7 @@ translations = {
         "meal": "Блюда 🍜",
         "drink": "Напитки 🍷",
         "salads": "Салаты 🥗",
-        "desert": "Десерты 🍰",
+        "cake": "Десерты 🍰",
         "tea": "Чаи 🫖",
         "start": "Здравствуйте, {name}",
         "hello": "Здравствуйте",
@@ -38,7 +38,7 @@ translations = {
             "meal": "Вот список блюд...",
             "drink": "Вот список напитков...",
             "salads": "Вот список салатов...",
-            "desert": "Вот список десертов...",
+            "cake": "Вот список десертов...",
             "tea": "Вот список чаев..."
         },
         "cart": "📥 Корзина"
@@ -46,7 +46,7 @@ translations = {
     "uz": {
         "tea": "Choylar 🫖",
         "salads": "Salatlar 🥗",
-        "desert": "Shirinliklar 🍰",
+        "cake": "Shirinliklar 🍰",
         "cart": "📥 Savat",
         "drink": "Ichimliklar 🍷",
         "meal": "Ovqatlar 🍜",
@@ -67,7 +67,7 @@ translations = {
             "meal": "Ovqatlar ro'yxati...",
             "drink": "Ichimliklar ro'yxati...",
             "salads": "Salatlar ro'yxati...",
-            "desert": "Shirinliklar ro'yxati...",
+            "cake": "Shirinliklar ro'yxati...",
             "tea": "Choylar ro'yxati..."
         }
     }
@@ -255,6 +255,39 @@ def get_teas_keyboard(user_id):
         resize_keyboard=True
     )
 
+def get_cakes_keyboard(user_id):
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text="MEDOVIK"),
+                KeyboardButton(text="Markiza"),
+            ],
+            [
+                KeyboardButton(text="Kurasan"),
+                KeyboardButton(text="Ekler"),
+            ],
+            [
+                KeyboardButton(text="Napoleon"),
+                KeyboardButton(text="Alganka"),
+            ],
+            [
+                KeyboardButton(text="Olmali pirog"),
+                KeyboardButton(text="Brauni"),
+            ],
+            [
+                KeyboardButton(text="Berri keyk"),
+                KeyboardButton(text="Karamelli pirojni"),
+            ],
+            [
+                KeyboardButton(text="Miraj assarti (meva)"),
+            ],
+            [
+                KeyboardButton(text=t("back", user_id)),
+                KeyboardButton(text=t("main_menu", user_id)),
+            ],
+        ],
+        resize_keyboard=True
+    )
 
 
 def get_lang_keyboard(user_id):
@@ -281,7 +314,7 @@ def get_category_keyboard(user_id):
             ],
             [
                 KeyboardButton(text=t("salads", user_id)),
-                KeyboardButton(text=t("desert", user_id)),
+                KeyboardButton(text=t("cake", user_id)),
             ],
             [
                 KeyboardButton(text=t("tea", user_id))
@@ -322,6 +355,10 @@ async def handle_meal(message: types.Message):
 async def handle_tea(message: types.Message):
     await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["tea"], reply_markup=get_teas_keyboard(message.from_user.id))
 
+@dp.message(lambda message: message.text in [t("cake", message.from_user.id)])
+async def handle_cake(message: types.Message):
+    await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["cake"], reply_markup=get_cakes_keyboard(message.from_user.id))
+
 @dp.message(lambda message: message.text in [t("drink", message.from_user.id)])
 async def handle_drink(message: types.Message):
     await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["drink"], reply_markup=get_category_keyboard(message.from_user.id))
@@ -330,9 +367,9 @@ async def handle_drink(message: types.Message):
 async def handle_salads(message: types.Message):
     await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["salads"], reply_markup=get_category_keyboard(message.from_user.id))
 
-@dp.message(lambda message: message.text in [t("desert", message.from_user.id)])
-async def handle_desert(message: types.Message):
-    await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["desert"], reply_markup=get_category_keyboard(message.from_user.id))
+@dp.message(lambda message: message.text in [t("cake", message.from_user.id)])
+async def handle_cake(message: types.Message):
+    await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["cake"], reply_markup=get_category_keyboard(message.from_user.id))
 
 @dp.message(lambda message: message.text in [t("tea", message.from_user.id)])
 async def handle_tea(message: types.Message):
@@ -414,6 +451,23 @@ async def handle_tea_info(message: types.Message, state: FSMContext):
     await state.update_data(tea=tea_name)
     await state.set_state(Meals.quantity)
 
+@dp.message(lambda message: message.text in cake_info)
+async def handle_cake_info(message: types.Message, state: FSMContext):
+    cake_name = message.text
+    cake = cake_info[cake_name]
+    description = cake["description"]
+    image_url = cake["image_url"]
+    
+    # Send the photo first
+    await message.answer_photo(photo=image_url, caption=description, reply_markup=get_quantity_keyboard(message.from_user.id))
+    
+    # Ask for quantity
+    await message.answer("Sonini tanlang", reply_markup=get_quantity_keyboard(message.from_user.id))
+    
+    # Store the selected cake in state
+    await state.update_data(cake=cake_name)
+    await state.set_state(Meals.quantity)
+
 
 @dp.message(lambda message: message.text.isdigit())
 async def handle_quantity(message: types.Message, state: FSMContext):
@@ -453,7 +507,7 @@ async def main():
     dp.message.register(handle_meal)
     dp.message.register(handle_drink)
     dp.message.register(handle_salads)
-    dp.message.register(handle_desert)
+    dp.message.register(handle_cake)
     dp.message.register(handle_tea)
     dp.message.register(handle_biz_haqimizda)
     dp.message.register(handle_orqaga)
