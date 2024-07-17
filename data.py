@@ -160,3 +160,51 @@ tea_info = {
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693826d1075770ea1c93939.webp&w=3840&q=75"
     },
 }
+
+cake_info = {
+    "MEDOVIK": {
+        "description": "MEDOVIK \n \n 25 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669380d41075770ea1c938f1.webp&w=3840&q=75"
+    },
+    "Markiza": {
+        "description": "Markiza \n \n 25 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693814c1075770ea1c938f4.webp&w=3840&q=75"
+    },
+    "Kurasan": {
+        "description": "Kurasan \n \n 25 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669381761075770ea1c93900.webp&w=3840&q=75"
+    },
+    "Ekler": {
+        "description": "Ekler \n \n 25 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669381831075770ea1c93906.webp&w=3840&q=75"
+    },
+    "Napoleon": {
+        "description": "Napoleon \n \n 24 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669381931075770ea1c9390c.webp&w=3840&q=75"
+    },
+    "Alganka": {
+        "description": "Alganka \n \n 25 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693819e1075770ea1c93912.webp&w=3840&q=75"
+    },
+    "Olmali pirog": {
+        "description": "Olmali pirog \n \n 18 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669407e2fb1142334aeb6079.webp&w=3840&q=75"
+    },
+    "Brauni": {
+        "description": "Brauni \n \n 35 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669381da1075770ea1c9391e.webp&w=3840&q=75"
+    },
+    "Berri keyk": {
+        "description": "Berri keyk \n \n 35 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669381e21075770ea1c93921.webp&w=3840&q=75"
+    },
+    "Karamelli pirojni": {
+        "description": "Karamelli pirojni \n \n 35 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6694115afb1142334aeb6093.webp&w=3840&q=75"
+    },
+    "Miraj assarti (meva)": {
+        "description": "Miraj assarti (meva) \n \n 70 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693fc57fb1142334aeb6053.webp&w=3840&q=75"
+    }
+
+}
