@@ -1,14 +1,14 @@
 product_info = {
     "Mastava": {
-        "description": "Мастава, цена: 20 000 сум",
+        "description": "Мастава \n \n 20 000 сум",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937ac71075770ea1c937cb.webp&w=3840&q=75"
     },
     "Qaynatma sho'rva(mol go'shti)": {
-        "description": "Qaynatma sho'rva(mol go'shti), цена: 25 000 сум",
+        "description": "Qaynatma sho'rva(mol go'shti) \n \n 25 000 сум",
         "image_url": "https://i.ytimg.com/vi/WcNK5w5doxY/maxresdefault.jpg"
     },
     "Qaynatma sho'rva(qo'y go'shti)": {
-        "description": "Qaynatma sho'rva(qo'y go'shti), цена: 20 000 сум",
+        "description": "Qaynatma sho'rva(qo'y go'shti) \n \n 20 000 сум",
         "image_url": "https://i.ytimg.com/vi/WcNK5w5doxY/maxresdefault.jpg"
     },
     "Frikadelka": {
@@ -136,4 +136,27 @@ product_info = {
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693fdaefb1142334aeb606e.webp&w=3840&q=75"
     },
     
+}
+
+tea_info = {
+    "Ko'k choy": {
+        "description": "Ko'k choy \n \n 3 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669381f91075770ea1c93927.webp&w=3840&q=75"
+    },
+    "Qora choy": {
+        "description": "Qora choy \n \n 3 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669381f91075770ea1c93927.webp&w=3840&q=75"
+    },
+    "Limon choy": {
+        "description": "Limon choy \n \n 10 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669381f91075770ea1c93927.webp&w=3840&q=75"
+    },
+    "Kiyik o'ti choyi": {
+        "description": "Kiyik o'ti choyi \n \n 7 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669381f91075770ea1c93927.webp&w=3840&q=75"
+    },
+    "Kofe": {
+        "description": "Kofe \n \n 5 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693826d1075770ea1c93939.webp&w=3840&q=75"
+    },
 }

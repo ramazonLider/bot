@@ -2,8 +2,8 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 from asyncio import run
-from states import Meals
-from data import product_info
+from states import *
+from data import *
 from aiogram.fsm.context import FSMContext
 
 # Create bot and dispatcher instances
@@ -234,6 +234,28 @@ def get_meals_keyboard(user_id):
         resize_keyboard=True
     )
 
+def get_teas_keyboard(user_id):
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text="Ko'k choy"),
+                KeyboardButton(text="Qora choy"),
+            ],
+            [
+                KeyboardButton(text="Limon choy"),
+                KeyboardButton(text="Kiyik o'ti choyi"),
+            ],
+            [
+                KeyboardButton(text="Kofe"),
+            ],
+            [
+                KeyboardButton(text=t("back", user_id)),
+            ],
+        ],
+        resize_keyboard=True
+    )
+
+
 
 def get_lang_keyboard(user_id):
     return ReplyKeyboardMarkup(
@@ -295,6 +317,10 @@ async def handle_buyurtma_berish(message: types.Message):
 @dp.message(lambda message: message.text in [t("meal", message.from_user.id)])
 async def handle_meal(message: types.Message):
     await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["meal"], reply_markup=get_meals_keyboard(message.from_user.id))
+
+@dp.message(lambda message: message.text in [t("tea", message.from_user.id)])
+async def handle_tea(message: types.Message):
+    await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["tea"], reply_markup=get_teas_keyboard(message.from_user.id))
 
 @dp.message(lambda message: message.text in [t("drink", message.from_user.id)])
 async def handle_drink(message: types.Message):
@@ -371,6 +397,23 @@ async def handle_product_info(message: types.Message, state: FSMContext):
     await state.update_data(product=product_name)
     await state.set_state(Meals.quantity)
 
+@dp.message(lambda message: message.text in tea_info)
+async def handle_tea_info(message: types.Message, state: FSMContext):
+    tea_name = message.text
+    tea = tea_info[tea_name]
+    description = tea["description"]
+    image_url = tea["image_url"]
+    
+    # Send the photo first
+    await message.answer_photo(photo=image_url, caption=description, reply_markup=get_quantity_keyboard(message.from_user.id))
+    
+    # Ask for quantity
+    await message.answer("Sonini tanlang", reply_markup=get_quantity_keyboard(message.from_user.id))
+    
+    # Store the selected tea in state
+    await state.update_data(tea=tea_name)
+    await state.set_state(Meals.quantity)
+
 
 @dp.message(lambda message: message.text.isdigit())
 async def handle_quantity(message: types.Message, state: FSMContext):
@@ -422,6 +465,7 @@ async def main():
     dp.message.register(receive_comment)
     dp.message.register(handle_product_info)
     dp.message.register(handle_quantity)
+    dp.message.register(handle_tea_info)
     dp.message.register(show_cart)
 
     # Start polling
