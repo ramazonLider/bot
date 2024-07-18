@@ -685,7 +685,7 @@ async def handle_quantity(message: types.Message, state: FSMContext):
     product_name = user_data.get("product")
 
     if not product_name:
-        await message.answer("An error occurred. No product selected.")
+        await message.answer("Xato bo'ldi")
         return
 
     # Initialize user data if it doesn't exist
@@ -702,7 +702,7 @@ async def handle_quantity(message: types.Message, state: FSMContext):
     # Update the state data
     await state.update_data(user_data)
 
-    await message.answer(f"Added {quantity} {product_name} to your cart.")
+    await message.answer(f"{quantity} ta {product_name} kartingizga qo'shildi")
 
 
 @dp.message(lambda message: message.text in [t("cart", message.from_user.id)])
@@ -714,7 +714,7 @@ async def show_cart(message: types.Message, state: FSMContext):
     
     # Check if the user's cart exists and is not empty
     if user_id in user_data and 'cart' in user_data[user_id] and user_data[user_id]['cart']:
-        await message.answer("Here's your cart:")
+        await message.answer("Bu kart:")
         for product, quantity in user_data[user_id]['cart'].items():
             await message.answer(f"{product}: {quantity}")
     else:
