@@ -208,3 +208,127 @@ cake_info = {
     }
 
 }
+
+salads_info = {
+    "Xit": {
+        "description": "Xit \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693c215fb1142334aeb6028.webp&w=3840&q=75"
+    },
+    "Sezar": {
+        "description": "Sezar \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937fbd1075770ea1c938b2.webp&w=3840&q=75"
+    },
+    "Ministerskiy": {
+        "description": "Ministerskiy \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693c22efb1142334aeb602b.webp&w=3840&q=75"
+    },
+    "Smak": {
+        "description": "Smak \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937fd81075770ea1c938c1.webp&w=3840&q=75"
+    },
+    "Gnezfo kukushka": {
+        "description": "Gnezfo kukushka \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937fef1075770ea1c938c4.webp&w=3840&q=75"
+    },
+    "Mayonezli qo'ziqorin": {
+        "description": "Mayonezli qo'ziqorin \n \n 32 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693c3fbfb1142334aeb602e.webp&w=3840&q=75"
+    },
+    "Mig": {
+        "description": "Mig \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937ffe1075770ea1c938ca.webp&w=3840&q=75"
+    },
+    "Mujskoy kapriz": {
+        "description": "Mujskoy kapriz \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669380071075770ea1c938cd.webp&w=3840&q=75"
+    },
+    "Osobiy": {
+        "description": "Osobiy \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693c0c6fb1142334aeb6021.webp&w=1200&q=75"
+    },
+    "Kapriz": {
+        "description": "Kapriz \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693801d1075770ea1c938d3.webp&w=1200&q=75"
+    },
+    "Ideal": {
+        "description": "Ideal \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66940cb2fb1142334aeb6090.webp&w=1200&q=75"
+    },
+    "Qaynona tili": {
+        "description": "Qaynona tili \n \n 32 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693802a1075770ea1c938d9.webp&w=1200&q=75"
+    },
+    "Fransuzkiy": {
+        "description": "Fransuzkiy \n \n 28 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693c088fb1142334aeb601b.webp&w=1200&q=75"
+    },
+    "Grecheskiy": {
+        "description": "Grecheskiy \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693c0aafb1142334aeb601e.webp&w=1200&q=75"
+    },
+    "Damskiy kapriz": {
+        "description": "Damskiy kapriz \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693c064fb1142334aeb6018.webp&w=1200&q=75"
+    },
+    "Yaponskiy": {
+        "description": "Yaponskiy \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66940a8efb1142334aeb6084.webp&w=1200&q=75"
+    },
+    "Opera": {
+        "description": "Opera \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693809f1075770ea1c938df.webp&w=1200&q=75"
+    },
+    "Ellada": {
+        "description": "Ellada \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669380b31075770ea1c938e8.webp&w=1200&q=75"
+    },
+    "Xe (mol go'sht)": {
+        "description": "Xe (mol go'sht) \n \n 35 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693f86dfb1142334aeb603a.webp&w=1200&q=75"
+    },
+    "Xe (tovuq go'shti)": {
+        "description": "Xe (tovuq go'shti) \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693f8b2fb1142334aeb6040.webp&w=1200&q=75"
+    },
+    "Achchiq-chuchu": {
+        "description": "Achchiq-chuchu \n \n 15 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669380c21075770ea1c938ee.webp&w=1200&q=75"
+    },
+    "Gloriya": {
+        "description": "Gloriya \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693fbb9fb1142334aeb604e.webp&w=1200&q=75"
+    },
+    "Chiroqchi": {
+        "description": "Chiroqchi \n \n 20 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693fd2efb1142334aeb605d.webp&w=1200&q=75"
+    },
+    "Xrustyashniy baqlajon": {
+        "description": "Xrustyashniy baqlajon \n \n 28 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669672fafb1142334aeb63bd.webp&w=1200&q=75"
+    },
+    "Go'shtli bodring": {
+        "description": "Go'shtli bodring \n \n 32 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669675bcfb1142334aeb63c4.webp&w=1200&q=75"
+    },
+    "Suzma": {
+        "description": "Suzma \n \n 7 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6697915cfb1142334aeb6515.webp&w=1200&q=75"
+    },
+    "Ayron": {
+        "description": "Ayron \n \n 15 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66979241fb1142334aeb651c.webp&w=1200&q=75"
+    },
+    "Okuroshka (kalbasali)": {
+        "description": "Okuroshka (kalbasali) \n \n 20 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6697932ffb1142334aeb6521.webp&w=1200&q=75"
+    },
+    "Okuroshka (go'shtli)": {
+        "description": "Okuroshka (go'shtli) \n \n 25 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6697963afb1142334aeb652d.webp&w=1200&q=75"
+    },
+    "Podvodochku": {
+        "description": "Podvodochku \n \n 30 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693fddcfb1142334aeb6073.webp&w=1200&q=75"
+    },
+
+}
