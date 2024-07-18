@@ -18,7 +18,7 @@ translations = {
     "rus": {
         "meal": "Блюда 🍜",
         "drink": "Напитки 🍷",
-        "salads": "Салаты 🥗",
+        "salad": "Салаты 🥗",
         "cake": "Десерты 🍰",
         "tea": "Чаи 🫖",
         "start": "Здравствуйте, {name}",
@@ -45,7 +45,7 @@ translations = {
     },
     "uz": {
         "tea": "Choylar 🫖",
-        "salads": "Salatlar 🥗",
+        "salad": "Salatlar 🥗",
         "cake": "Shirinliklar 🍰",
         "cart": "📥 Savat",
         "drink": "Ichimliklar 🍷",
@@ -255,6 +255,77 @@ def get_teas_keyboard(user_id):
         resize_keyboard=True
     )
 
+def get_salads_keyboard(user_id):
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text="Xit"),
+                KeyboardButton(text="Sezar"),
+            ],
+            [
+                KeyboardButton(text="Ministerskiy"),
+                KeyboardButton(text="Smak"),
+            ],
+            [
+                KeyboardButton(text="Gnezdo kukushka"),
+                KeyboardButton(text="Mayonezli qo'ziqorin"),
+            ],
+            [
+                KeyboardButton(text="Mig"),
+                KeyboardButton(text="Mujskoy kapriz"),
+            ],
+            [
+                KeyboardButton(text="Osobiy"),
+                KeyboardButton(text="Kapriz"),
+            ],
+            [
+                KeyboardButton(text="Ideal"),
+                KeyboardButton(text="Qaynona tili"),
+            ],
+            [
+                KeyboardButton(text="Fransuzkiy"),
+                KeyboardButton(text="Grecheskiy"),
+            ],
+            [
+                KeyboardButton(text="Damskiy kapriz"),
+                KeyboardButton(text="Yaponskiy"),
+            ],
+            [
+                KeyboardButton(text="Opera"),
+                KeyboardButton(text="Ellada"),
+            ],
+            [
+                KeyboardButton(text="Xe (mol go'shti)"),
+                KeyboardButton(text="Xe (tovuq go'shti)"),
+            ],
+            [
+                KeyboardButton(text="Achchiq-chuchu"),
+                KeyboardButton(text="Gloriya"),
+            ],
+            [
+                KeyboardButton(text="Chiroqchi"),
+                KeyboardButton(text="Xrustyashniy baqlajon"),
+            ],
+            [
+                KeyboardButton(text="Go'shtli bodring"),
+                KeyboardButton(text="Suzma"),
+            ],
+            [
+                KeyboardButton(text="Ayron"),
+                KeyboardButton(text="Okuroshka (kalbasali)"),
+            ],
+            [
+                KeyboardButton(text="Okuroshka (go'shtli)"),
+                KeyboardButton(text="QPodvodochkuora"),
+            ],
+            [
+                KeyboardButton(text=t("back", user_id)),
+            ],
+        ],
+        resize_keyboard=True
+    )
+
+
 def get_cakes_keyboard(user_id):
     return ReplyKeyboardMarkup(
         keyboard=[
@@ -313,7 +384,7 @@ def get_category_keyboard(user_id):
                 KeyboardButton(text=t("drink", user_id)),
             ],
             [
-                KeyboardButton(text=t("salads", user_id)),
+                KeyboardButton(text=t("salad", user_id)),
                 KeyboardButton(text=t("cake", user_id)),
             ],
             [
@@ -355,6 +426,10 @@ async def handle_meal(message: types.Message):
 async def handle_tea(message: types.Message):
     await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["tea"], reply_markup=get_teas_keyboard(message.from_user.id))
 
+@dp.message(lambda message: message.text in [t("salad", message.from_user.id)])
+async def handle_salad(message: types.Message):
+    await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["salads"], reply_markup=get_salads_keyboard(message.from_user.id))
+
 @dp.message(lambda message: message.text in [t("cake", message.from_user.id)])
 async def handle_cake(message: types.Message):
     await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["cake"], reply_markup=get_cakes_keyboard(message.from_user.id))
@@ -363,9 +438,9 @@ async def handle_cake(message: types.Message):
 async def handle_drink(message: types.Message):
     await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["drink"], reply_markup=get_category_keyboard(message.from_user.id))
 
-@dp.message(lambda message: message.text in [t("salads", message.from_user.id)])
-async def handle_salads(message: types.Message):
-    await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["salads"], reply_markup=get_category_keyboard(message.from_user.id))
+@dp.message(lambda message: message.text in [t("salad", message.from_user.id)])
+async def handle_salad(message: types.Message):
+    await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["salad"], reply_markup=get_category_keyboard(message.from_user.id))
 
 @dp.message(lambda message: message.text in [t("cake", message.from_user.id)])
 async def handle_cake(message: types.Message):
@@ -468,6 +543,23 @@ async def handle_cake_info(message: types.Message, state: FSMContext):
     await state.update_data(cake=cake_name)
     await state.set_state(Meals.quantity)
 
+@dp.message(lambda message: message.text in salads_info)
+async def handle_salad_info(message: types.Message, state: FSMContext):
+    salad_name = message.text
+    salad = salads_info[salad_name]
+    description = salad["description"]
+    image_url = salad["image_url"]
+    
+    # Send the photo first
+    await message.answer_photo(photo=image_url, caption=description, reply_markup=get_quantity_keyboard(message.from_user.id))
+    
+    # Ask for quantity
+    await message.answer("Sonini tanlang", reply_markup=get_quantity_keyboard(message.from_user.id))
+    
+    # Store the selected salad in state
+    await state.update_data(salad=salad_name)
+    await state.set_state(Meals.quantity)
+
 
 @dp.message(lambda message: message.text.isdigit())
 async def handle_quantity(message: types.Message, state: FSMContext):
@@ -506,7 +598,7 @@ async def main():
     dp.message.register(handle_buyurtma_berish)
     dp.message.register(handle_meal)
     dp.message.register(handle_drink)
-    dp.message.register(handle_salads)
+    dp.message.register(handle_salad)
     dp.message.register(handle_cake)
     dp.message.register(handle_tea)
     dp.message.register(handle_biz_haqimizda)
