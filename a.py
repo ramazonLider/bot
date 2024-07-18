@@ -601,7 +601,7 @@ async def handle_tea_info(message: types.Message, state: FSMContext):
     await message.answer("Sonini tanlang", reply_markup=get_quantity_keyboard(message.from_user.id))
     
     # Store the selected tea in state
-    await state.update_data(tea=tea_name)
+    await state.update_data(product=tea_name)
     await  state.set_state(Teas.quantity)
 
 @dp.message(lambda message: message.text in cake_info)
@@ -618,7 +618,7 @@ async def handle_cake_info(message: types.Message, state: FSMContext):
     await message.answer("Sonini tanlang", reply_markup=get_quantity_keyboard(message.from_user.id))
     
     # Store the selected cake in state
-    await state.update_data(cake=cake_name)
+    await state.update_data(product=cake_name)
     await  state.set_state(Cakes.quantity)
 
 @dp.message(lambda message: message.text in salads_info)
@@ -635,7 +635,7 @@ async def handle_salad_info(message: types.Message, state: FSMContext):
     await message.answer("Sonini tanlang", reply_markup=get_quantity_keyboard(message.from_user.id))
     
     # Store the selected salad in state
-    await state.update_data(salad=salad_name)
+    await state.update_data(product=salad_name)
     await  state.set_state(Salads.quantity)
 
 @dp.message(lambda message: message.text in drink_info)
@@ -652,7 +652,7 @@ async def handle_drink_info(message: types.Message, state: FSMContext):
     await message.answer("Sonini tanlang", reply_markup=get_quantity_keyboard(message.from_user.id))
     
     # Store the selected drink in state
-    await state.update_data(drink=drink_name)
+    await state.update_data(product=drink_name)
     await state.set_state(Drinks.quantity)
 
 

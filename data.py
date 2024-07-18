@@ -226,8 +226,8 @@ salads_info = {
         "description": "Smak \n \n 30 000 сум",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937fd81075770ea1c938c1.webp&w=3840&q=75"
     },
-    "Gnezfo kukushka": {
-        "description": "Gnezfo kukushka \n \n 30 000 сум",
+    "Gnezdo kukushka": {
+        "description": "Gnezdo kukushka \n \n 30 000 сум",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937fef1075770ea1c938c4.webp&w=3840&q=75"
     },
     "Mayonezli qo'ziqorin": {
