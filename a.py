@@ -545,9 +545,13 @@ async def handle_biz_haqimizda(message: types.Message):
     await message.answer(t("about_us", message.from_user.id), reply_markup=get_keyboard(message.from_user.id))
 
 # Orqaga handler
+@dp.message(lambda message: message.text in [t("main_menu", message.from_user.id)])
+async def handle_bosh_menyu(message: types.Message):
+    await message.answer(t("main_menu", message.from_user.id), reply_markup=get_keyboard(message.from_user.id))
+
 @dp.message(lambda message: message.text in [t("back", message.from_user.id)])
 async def handle_orqaga(message: types.Message):
-    await message.answer(t("main_menu", message.from_user.id), reply_markup=get_keyboard(message.from_user.id))
+    await message.answer(t("back", message.from_user.id), reply_markup=get_keyboard(message.from_user.id))
 
 @dp.message(lambda message: message.text in [t("settings", message.from_user.id)])
 async def handle_settings(message: types.Message):
@@ -719,6 +723,7 @@ async def main():
     dp.message.register(handle_quantity)
     dp.message.register(handle_tea_info)
     dp.message.register(show_cart)
+    dp.message.register(handle_bosh_menyu)
 
     # Start polling
     await dp.start_polling(bot)
