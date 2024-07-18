@@ -1,14 +1,14 @@
 product_info = {
     "Mastava": {
-        "description": "Мастава \n \n 20 000 сум",
+        "description": "Мастава \n \n 20 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937ac71075770ea1c937cb.webp&w=3840&q=75"
     },
     "Qaynatma sho'rva(mol go'shti)": {
-        "description": "Qaynatma sho'rva(mol go'shti) \n \n 25 000 сум",
+        "description": "Qaynatma sho'rva(mol go'shti) \n \n 25 000 so'm",
         "image_url": "https://i.ytimg.com/vi/WcNK5w5doxY/maxresdefault.jpg"
     },
     "Qaynatma sho'rva(qo'y go'shti)": {
-        "description": "Qaynatma sho'rva(qo'y go'shti) \n \n 20 000 сум",
+        "description": "Qaynatma sho'rva(qo'y go'shti) \n \n 20 000 so'm",
         "image_url": "https://i.ytimg.com/vi/WcNK5w5doxY/maxresdefault.jpg"
     },
     "Frikadelka": {
@@ -140,42 +140,42 @@ product_info = {
 
 tea_info = {
     "Ko'k choy": {
-        "description": "Ko'k choy \n \n 3 000 сум",
+        "description": "Ko'k choy \n \n 3 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669381f91075770ea1c93927.webp&w=3840&q=75"
     },
     "Qora choy": {
-        "description": "Qora choy \n \n 3 000 сум",
+        "description": "Qora choy \n \n 3 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669381f91075770ea1c93927.webp&w=3840&q=75"
     },
     "Limon choy": {
-        "description": "Limon choy \n \n 10 000 сум",
+        "description": "Limon choy \n \n 10 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669381f91075770ea1c93927.webp&w=3840&q=75"
     },
     "Kiyik o'ti choyi": {
-        "description": "Kiyik o'ti choyi \n \n 7 000 сум",
+        "description": "Kiyik o'ti choyi \n \n 7 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669381f91075770ea1c93927.webp&w=3840&q=75"
     },
     "Kofe": {
-        "description": "Kofe \n \n 5 000 сум",
+        "description": "Kofe \n \n 5 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693826d1075770ea1c93939.webp&w=3840&q=75"
     },
 }
 
 cake_info = {
     "MEDOVIK": {
-        "description": "MEDOVIK \n \n 25 000 сум",
+        "description": "MEDOVIK \n \n 25 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669380d41075770ea1c938f1.webp&w=3840&q=75"
     },
     "Markiza": {
-        "description": "Markiza \n \n 25 000 сум",
+        "description": "Markiza \n \n 25 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693814c1075770ea1c938f4.webp&w=3840&q=75"
     },
     "Kurasan": {
-        "description": "Kurasan \n \n 25 000 сум",
+        "description": "Kurasan \n \n 25 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669381761075770ea1c93900.webp&w=3840&q=75"
     },
     "Ekler": {
-        "description": "Ekler \n \n 25 000 сум",
+        "description": "Ekler \n \n 25 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669381831075770ea1c93906.webp&w=3840&q=75"
     },
     "Napoleon": {
@@ -447,43 +447,43 @@ drink_info = {
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937ebb1075770ea1c9388e.webp&w=3840&q=75"
     },
     "BORJOMI": {
-        "description": "BORJOMI \n \n 16 000 сум",
+        "description": "BORJOMI \n \n 16 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937eab1075770ea1c93888.webp&w=3840&q=75"
     },
     "DINAY": {
-        "description": "DINAY \n \n 12 000 сум",
+        "description": "DINAY \n \n 12 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937ec31075770ea1c93891.webp&w=3840&q=75"
     },
     "AYS TEA 0.5": {
-        "description": "AYS TEA 0.5 \n \n 6 000 сум",
+        "description": "AYS TEA 0.5 \n \n 6 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937ecd1075770ea1c93894.webp&w=3840&q=75"
     },
     "AYS TEA 1.2": {
-        "description": "AYS TEA 1.2 \n \n 12 000 сум",
+        "description": "AYS TEA 1.2 \n \n 12 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937ed91075770ea1c93897.webp&w=3840&q=75"
     },
     "CHERNOGOLOVKA 0.3": {
-        "description": "CHERNOGOLOVKA 0.3 \n \n 7 000 сум",
+        "description": "CHERNOGOLOVKA 0.3 \n \n 7 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937ee41075770ea1c9389a.webp&w=3840&q=75"
     },
     "CHERNOGOLOVKA 0.5": {
-        "description": "CHERNOGOLOVKA 0.5 \n \n 10 000 сум",
+        "description": "CHERNOGOLOVKA 0.5 \n \n 10 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937ee41075770ea1c9389a.webp&w=3840&q=75"
     },
     "SPRITE 1.0": {
-        "description": "SPRITE 1.0 \n \n 12 000 сум",
+        "description": "SPRITE 1.0 \n \n 12 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937f131075770ea1c938a0.webp&w=3840&q=75"
     },
     "SPRITE 1.5": {
-        "description": "SPRITE 1.5 \n \n 16 000 сум",
+        "description": "SPRITE 1.5 \n \n 16 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937f131075770ea1c938a0.webp&w=3840&q=75"
     },
     "MOXITO": {
-        "description": "MOXITO \n \n 14 000 сум",
+        "description": "MOXITO \n \n 14 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937f3b1075770ea1c938a6.webp&w=3840&q=75"
     },
     "MOXITO MIRAJ": {
-        "description": "MOXITO MIRAJ \n \n 28 000 сум",
+        "description": "MOXITO MIRAJ \n \n 28 000 so'm",
         "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937f8f1075770ea1c938a9.webp&w=3840&q=75"
     },
 }
