@@ -325,6 +325,91 @@ def get_salads_keyboard(user_id):
         resize_keyboard=True
     )
 
+def get_drinks_keyboard(user_id):
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text="COCA COLA 0.5"),
+                KeyboardButton(text="COCA COLA 1.0"),
+            ],
+            [
+                KeyboardButton(text="COCA COLA 1.5"),
+                KeyboardButton(text="COCA COLA 2.0"),
+            ],
+            [
+                KeyboardButton(text="PEPSI 0.5"),
+                KeyboardButton(text="PEPSI 1.0"),
+            ],
+            [
+                KeyboardButton(text="PEPSI 1.5"),
+                KeyboardButton(text="PEPSI 2.0"),
+            ],
+            [
+                KeyboardButton(text="FANTA 0.5"),
+                KeyboardButton(text="FANTA 1.0"),
+            ],
+            [
+                KeyboardButton(text="FANTA 1.5"),
+                KeyboardButton(text="FANTA 2.0"),
+            ],
+            [
+                KeyboardButton(text="GAZLI SUV 0.5"),
+                KeyboardButton(text="GAZLI SUV 1.0"),
+            ],
+            [
+                KeyboardButton(text="GAZLI SUV 1.5"),
+                KeyboardButton(text="GAZSIZ SUV 0.5"),
+            ],
+            [
+                KeyboardButton(text="GAZSIZ SUV 1.0"),
+                KeyboardButton(text="GAZSIZ SUV 1.5"),
+            ],
+            [
+                KeyboardButton(text="DENA 1.0"),
+                KeyboardButton(text="KAMPOT 1.0"),
+            ],
+            [
+                KeyboardButton(text="KAMPOT 1.5"),
+                KeyboardButton(text="LAL ANAR 1.5"),
+            ],
+            [
+                KeyboardButton(text="Kichik Flesh"),
+                KeyboardButton(text="Katta Flesh"),
+            ],
+            [
+                KeyboardButton(text="GORILLA"),
+                KeyboardButton(text="FLAVIS"),
+            ],
+            [
+                KeyboardButton(text="ADRENALIN"),
+                KeyboardButton(text="TROPIK"),
+            ],
+            [
+                KeyboardButton(text="BORJOMI"),
+                KeyboardButton(text="DINAY"),
+            ],
+            [
+                KeyboardButton(text="AYS TEA 0.5"),
+                KeyboardButton(text="AYS TEA 1.2"),
+            ],
+            [
+                KeyboardButton(text="CHERNOGOLOVKA 0.3"),
+                KeyboardButton(text="CHERNOGOLOVKA 0.5"),
+            ],
+            [
+                KeyboardButton(text="SPRITE 1.0"),
+                KeyboardButton(text="SPRITE 1.5"),
+            ],
+            [
+                KeyboardButton(text="MOXITO"),
+                KeyboardButton(text="MOXITO MIRAJ"),
+            ],
+            [
+                KeyboardButton(text=t("back", user_id)),
+            ],
+        ],
+        resize_keyboard=True
+    )
 
 def get_cakes_keyboard(user_id):
     return ReplyKeyboardMarkup(
@@ -425,6 +510,10 @@ async def handle_meal(message: types.Message):
 @dp.message(lambda message: message.text in [t("tea", message.from_user.id)])
 async def handle_tea(message: types.Message):
     await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["tea"], reply_markup=get_teas_keyboard(message.from_user.id))
+
+@dp.message(lambda message: message.text in [t("drink", message.from_user.id)])
+async def handle_drink(message: types.Message):
+    await message.answer(translations[get_user_language(message.from_user.id)]["category_items"]["drink"], reply_markup=get_drinks_keyboard(message.from_user.id))
 
 @dp.message(lambda message: message.text in [t("salad", message.from_user.id)])
 async def handle_salad(message: types.Message):
@@ -558,6 +647,23 @@ async def handle_salad_info(message: types.Message, state: FSMContext):
     
     # Store the selected salad in state
     await state.update_data(salad=salad_name)
+    await state.set_state(Meals.quantity)
+
+@dp.message(lambda message: message.text in drink_info)
+async def handle_drink_info(message: types.Message, state: FSMContext):
+    drink_name = message.text
+    drink = drink_info[drink_name]
+    description = drink["description"]
+    image_url = drink["image_url"]
+    
+    # Send the photo first
+    await message.answer_photo(photo=image_url, caption=description, reply_markup=get_quantity_keyboard(message.from_user.id))
+    
+    # Ask for quantity
+    await message.answer("Sonini tanlang", reply_markup=get_quantity_keyboard(message.from_user.id))
+    
+    # Store the selected drink in state
+    await state.update_data(drink=drink_name)
     await state.set_state(Meals.quantity)
 
 

@@ -332,3 +332,158 @@ salads_info = {
     },
 
 }
+
+drink_info = {
+    "COCA COLA 0.5": {
+        "description": "COCA COLA 0.5 \n \n 7 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6694daccfb1142334aeb6112.webp&w=3840&q=75"
+    },
+    "COCA COLA 1.0": {
+        "description": "COCA COLA 1.0 \n \n 12 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937d1b1075770ea1c9384f.webp&w=3840&q=75"
+    },
+    "COCA COLA 1.5": {
+        "description": "COCA COLA 1.5 \n \n 16 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669383ce1075770ea1c93942.webp&w=3840&q=75"
+    },
+    "COCA COLA 2.0": {
+        "description": "COCA COLA 2.0 \n \n 19 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937dac1075770ea1c93852.webp&w=3840&q=75"
+    },
+    "PEPSI 0.5": {
+        "description": "PEPSI 0.5 \n \n 7 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937db81075770ea1c93855.webp&w=3840&q=75"
+    },
+    "PEPSI 1.0": {
+        "description": "PEPSI 1.0 \n \n 12 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937f071075770ea1c9389d.webp&w=3840&q=75"
+    },
+    "PEPSI 1.5": {
+        "description": "PEPSI 1.5 \n \n 16 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937dc31075770ea1c93858.webp&w=3840&q=75"
+    },
+    "PEPSI 2.0": {
+        "description": "PEPSI 2.0 \n \n 19 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937dcd1075770ea1c9385b.webp&w=3840&q=75"
+    },
+    "FANTA 0.5": {
+        "description": "FANTA 0.5 \n \n 7 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937dd81075770ea1c9385e.webp&w=3840&q=75"
+    },
+    "FANTA 1.0": {
+        "description": "FANTA 1.0 \n \n 12 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937de91075770ea1c93861.webp&w=3840&q=75"
+    },
+    "FANTA 1.5": {
+        "description": "FANTA 1.5 \n \n 16 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669383f11075770ea1c93945.webp&w=3840&q=75"
+    },
+    "FANTA 2.0": {
+        "description": "FANTA 2.0 \n \n 19 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937e0d1075770ea1c93864.webp&w=3840&q=75"
+    },
+    "GAZLI SUV 0.5": {
+        "description": "GAZLI SUV 0.5 \n \n 3 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669384021075770ea1c93948.webp&w=3840&q=75"
+    },
+    "GAZLI SUV 1.0": {
+        "description": "GAZLI SUV 1.0 \n \n 4 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669384391075770ea1c9394b.webp&w=3840&q=75"
+    },
+    "GAZLI SUV 1.5": {
+        "description": "GAZLI SUV 1.5 \n \n 5 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669384391075770ea1c9394b.webp&w=3840&q=75"
+    },
+    "GAZSIZ SUV 0.5": {
+        "description": "GAZSIZ SUV 0.5 \n \n 3 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693847b1075770ea1c93951.webp&w=3840&q=75"
+    },
+    "GAZSIZ SUV 1.0": {
+        "description": "GAZSIZ SUV 1.0 \n \n 4 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F6693847b1075770ea1c93951.webp&w=3840&q=75"
+    },
+    "GAZSIZ SUV 1.5": {
+        "description": "GAZSIZ SUV 1.5 \n \n 5 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F669385071075770ea1c93957.webp&w=3840&q=75"
+    },
+    "DENA 1.0": {
+        "description": "DENA 1.0 \n \n 14 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937e1f1075770ea1c9386a.webp&w=3840&q=75"
+    },
+    "KAMPOT 1.0": {
+        "description": "KAMPOT 1.0 \n \n 10 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937e2d1075770ea1c9386d.webp&w=3840&q=75"
+    },
+    "KAMPOT 1.5": {
+        "description": "KAMPOT 1.5 \n \n 15 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937e2d1075770ea1c9386d.webp&w=3840&q=75"
+    },
+    "LAL ANAR 1.5": {
+        "description": "LAL ANAR 1.5 \n \n 16 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937e6d1075770ea1c93873.webp&w=3840&q=75"
+    },
+    "Kichik Flesh": {
+        "description": "Kichik Flesh \n \n 9 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937e761075770ea1c93879.webp&w=3840&q=75"
+    },
+    "Katta Flesh": {
+        "description": "Katta Flesh \n \n 11 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937e841075770ea1c9387c.webp&w=3840&q=75"
+    },
+    "GORILLA": {
+        "description": "GORILLA \n \n 13 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937e8f1075770ea1c9387f.webp&w=3840&q=75"
+    },
+    "FLAVIS": {
+        "description": "FLAVIS \n \n 17 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937e9f1075770ea1c93885.webp&w=3840&q=75"
+    },
+    "ADRENALIN": {
+        "description": "ADRENALIN \n \n 17 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937e961075770ea1c93882.webp&w=3840&q=75"
+    },
+    "TROPIK": {
+        "description": "TROPIK \n \n 11 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937ebb1075770ea1c9388e.webp&w=3840&q=75"
+    },
+    "BORJOMI": {
+        "description": "BORJOMI \n \n 16 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937eab1075770ea1c93888.webp&w=3840&q=75"
+    },
+    "DINAY": {
+        "description": "DINAY \n \n 12 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937ec31075770ea1c93891.webp&w=3840&q=75"
+    },
+    "AYS TEA 0.5": {
+        "description": "AYS TEA 0.5 \n \n 6 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937ecd1075770ea1c93894.webp&w=3840&q=75"
+    },
+    "AYS TEA 1.2": {
+        "description": "AYS TEA 1.2 \n \n 12 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937ed91075770ea1c93897.webp&w=3840&q=75"
+    },
+    "CHERNOGOLOVKA 0.3": {
+        "description": "CHERNOGOLOVKA 0.3 \n \n 7 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937ee41075770ea1c9389a.webp&w=3840&q=75"
+    },
+    "CHERNOGOLOVKA 0.5": {
+        "description": "CHERNOGOLOVKA 0.5 \n \n 10 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937ee41075770ea1c9389a.webp&w=3840&q=75"
+    },
+    "SPRITE 1.0": {
+        "description": "SPRITE 1.0 \n \n 12 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937f131075770ea1c938a0.webp&w=3840&q=75"
+    },
+    "SPRITE 1.5": {
+        "description": "SPRITE 1.5 \n \n 16 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937f131075770ea1c938a0.webp&w=3840&q=75"
+    },
+    "MOXITO": {
+        "description": "MOXITO \n \n 14 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937f3b1075770ea1c938a6.webp&w=3840&q=75"
+    },
+    "MOXITO MIRAJ": {
+        "description": "MOXITO MIRAJ \n \n 28 000 сум",
+        "image_url": "https://foodee.menu/_next/image?url=https%3A%2F%2Fapi.zon.uz%2Ffoodee%2F1000143276%2Fproducts%2Fimage%2F66937f8f1075770ea1c938a9.webp&w=3840&q=75"
+    },
+}
