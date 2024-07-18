@@ -17,6 +17,8 @@ user_data = {}
 translations = {
     "rus": {
         "meal": "Блюда 🍜",
+        "contact": "Поделиться контактом",
+        "official": "🛒 Оформить заказ",
         "drink": "Напитки 🍷",
         "salad": "Салаты 🥗",
         "cake": "Десерты 🍰",
@@ -44,7 +46,9 @@ translations = {
         "cart": "📥 Корзина"
     },
     "uz": {
+        "contact": "Kontaktni ulashish",
         "tea": "Choylar 🫖",
+        "official": "🛒 Rasmiylashtirish",
         "salad": "Salatlar 🥗",
         "cake": "Shirinliklar 🍰",
         "cart": "📥 Savat",
@@ -92,7 +96,7 @@ def get_keyboard(user_id):
                 KeyboardButton(text=t("order", user_id)),
             ],
             [
-                KeyboardButton(text=t("cart", user_id)),
+                KeyboardButton(text=t("official", user_id)),
                 KeyboardButton(text=t("settings", user_id))
             ],
             [
@@ -469,11 +473,25 @@ def get_category_keyboard(user_id):
                 KeyboardButton(text=t("drink", user_id)),
             ],
             [
-                KeyboardButton(text=t("salad", user_id)),
+                KeyboardButton(text=t("salad", user_id),),
                 KeyboardButton(text=t("cake", user_id)),
             ],
             [
                 KeyboardButton(text=t("tea", user_id))
+            ],
+            [
+                KeyboardButton(text=t("back", user_id)),
+                KeyboardButton(text=t("main_menu", user_id)),
+            ],
+        ],
+        resize_keyboard=True
+    )
+
+def get_official_keyboard(user_id):
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [
+                KeyboardButton(text=t("contact", user_id),request_contact=True)
             ],
             [
                 KeyboardButton(text=t("back", user_id)),
@@ -501,6 +519,10 @@ async def start_command(message: types.Message):
 @dp.message(lambda message: message.text in [t("order", message.from_user.id)])
 async def handle_buyurtma_berish(message: types.Message):
     await message.answer(t("choose_category", message.from_user.id), reply_markup=get_category_keyboard(message.from_user.id))
+
+@dp.message(lambda message: message.text in [t("official", message.from_user.id)])
+async def handle_official(message: types.Message):
+    await message.answer("Raqamingizni kiriting", reply_markup=get_official_keyboard(message.from_user.id))
 
 # Category handlers
 @dp.message(lambda message: message.text in [t("meal", message.from_user.id)])
@@ -788,6 +810,7 @@ async def main():
     dp.message.register(handle_tea_info)
     dp.message.register(show_cart)
     dp.message.register(handle_bosh_menyu)
+    dp.message.register(handle_official)
 
     # Start polling
     await dp.start_polling(bot)
