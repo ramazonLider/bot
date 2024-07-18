@@ -5,3 +5,12 @@ class Meals(StatesGroup):
 
 class Teas(StatesGroup):
     quantity = State()
+
+class Cakes(StatesGroup):
+    quantity = State()
+
+class Salads(StatesGroup):
+    quantity = State()
+
+class Drinks(StatesGroup):
+    quantity = State()

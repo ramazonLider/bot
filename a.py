@@ -585,22 +585,7 @@ async def receive_comment(message: types.Message):
     await message.answer(t("comment_received", user_id), reply_markup=get_keyboard(user_id))
 
 # Product information handler
-@dp.message(lambda message: message.text in product_info)
-async def handle_product_info(message: types.Message, state: FSMContext):
-    product_name = message.text
-    product = product_info[product_name]
-    description = product["description"]
-    image_url = product["image_url"]
-    
-    # Send the photo first
-    await message.answer_photo(photo=image_url, caption=description, reply_markup=get_quantity_keyboard(message.from_user.id))
-    
-    # Ask for quantity
-    await message.answer("Sonini tanlang", reply_markup=get_quantity_keyboard(message.from_user.id))
-    
-    # Store the selected product in state
-    await state.update_data(product=product_name)
-    await state.set_state(Meals.quantity)
+
 
 @dp.message(lambda message: message.text in tea_info)
 async def handle_tea_info(message: types.Message, state: FSMContext):
@@ -617,7 +602,7 @@ async def handle_tea_info(message: types.Message, state: FSMContext):
     
     # Store the selected tea in state
     await state.update_data(tea=tea_name)
-    await state.set_state(Meals.quantity)
+    await  state.set_state(Teas.quantity)
 
 @dp.message(lambda message: message.text in cake_info)
 async def handle_cake_info(message: types.Message, state: FSMContext):
@@ -634,7 +619,7 @@ async def handle_cake_info(message: types.Message, state: FSMContext):
     
     # Store the selected cake in state
     await state.update_data(cake=cake_name)
-    await state.set_state(Meals.quantity)
+    await  state.set_state(Cakes.quantity)
 
 @dp.message(lambda message: message.text in salads_info)
 async def handle_salad_info(message: types.Message, state: FSMContext):
@@ -651,7 +636,7 @@ async def handle_salad_info(message: types.Message, state: FSMContext):
     
     # Store the selected salad in state
     await state.update_data(salad=salad_name)
-    await state.set_state(Meals.quantity)
+    await  state.set_state(Salads.quantity)
 
 @dp.message(lambda message: message.text in drink_info)
 async def handle_drink_info(message: types.Message, state: FSMContext):
@@ -668,32 +653,67 @@ async def handle_drink_info(message: types.Message, state: FSMContext):
     
     # Store the selected drink in state
     await state.update_data(drink=drink_name)
-    await state.set_state(Meals.quantity)
+    await state.set_state(Drinks.quantity)
 
+
+@dp.message(lambda message: message.text in product_info)
+async def handle_product_info(message: types.Message, state: FSMContext):
+    product_name = message.text
+    product = product_info[product_name]
+    description = product["description"]
+    image_url = product["image_url"]
+    
+    # Send the photo first
+    await message.answer_photo(photo=image_url, caption=description, reply_markup=get_quantity_keyboard(message.from_user.id))
+    
+    # Ask for quantity
+    await message.answer("Sonini tanlang", reply_markup=get_quantity_keyboard(message.from_user.id))
+    
+    # Store the selected product in state
+    await state.update_data(product=product_name)
+    await  state.set_state(Meals.quantity)
 
 @dp.message(lambda message: message.text.isdigit())
 async def handle_quantity(message: types.Message, state: FSMContext):
-    state.set_state(Meals.quantity)
-    quantity = int(message.text)
-    
-    # Retrieve stored product name from state
-    data = await state.get_data()
-    product_name = data.get('product', '')
-
-    # Update or initialize user's cart in user_data
     user_id = message.from_user.id
+    quantity = int(message.text)
+
+    # Get the current state data
+    user_data = await state.get_data()
+
+    # Get the product name from the state data
+    product_name = user_data.get("product")
+
+    if not product_name:
+        await message.answer("An error occurred. No product selected.")
+        return
+
+    # Initialize user data if it doesn't exist
+    if user_id not in user_data:
+        user_data[user_id] = {}
+    
+    # Initialize cart if it doesn't exist
     if 'cart' not in user_data[user_id]:
         user_data[user_id]['cart'] = {}
-    
+
+    # Add or update the product in the cart
     user_data[user_id]['cart'][product_name] = quantity
-    
+
+    # Update the state data
+    await state.update_data(user_data)
+
     await message.answer(f"Added {quantity} {product_name} to your cart.")
-    await state.finish()
+
 
 @dp.message(lambda message: message.text in [t("cart", message.from_user.id)])
-async def show_cart(message: types.Message):
+async def show_cart(message: types.Message, state: FSMContext):
     user_id = message.from_user.id
-    if 'cart' in user_data[user_id] and user_data[user_id]['cart']:
+    
+    # Get the current state data
+    user_data = await state.get_data()
+    
+    # Check if the user's cart exists and is not empty
+    if user_id in user_data and 'cart' in user_data[user_id] and user_data[user_id]['cart']:
         await message.answer("Here's your cart:")
         for product, quantity in user_data[user_id]['cart'].items():
             await message.answer(f"{product}: {quantity}")
