@@ -714,11 +714,55 @@ async def show_cart(message: types.Message, state: FSMContext):
     
     # Check if the user's cart exists and is not empty
     if user_id in user_data and 'cart' in user_data[user_id] and user_data[user_id]['cart']:
-        await message.answer("Bu kart:")
+        total_price = 0
+        cart_message = "Bu kart:\n"
+        
         for product, quantity in user_data[user_id]['cart'].items():
-            await message.answer(f"{product}: {quantity}")
+            if product in product_info:
+                # Extract price and remove non-numeric characters
+                price_str = product_info[product]['narx']
+                price_per_item = int(price_str.replace(' ', '').replace(',', ''))
+                
+                total_per_item = price_per_item * quantity
+                cart_message += f"{product}: {quantity} x {price_per_item} so'm = {total_per_item} so'm\n"
+                total_price += total_per_item
+            elif product in drink_info:
+                # Extract price and remove non-numeric characters
+                price_str = drink_info[product]['narx']
+                price_per_item = int(price_str.replace(' ', '').replace(',', ''))
+                
+                total_per_item = price_per_item * quantity
+                cart_message += f"{product}: {quantity} x {price_per_item} so'm = {total_per_item} so'm\n"
+                total_price += total_per_item
+            elif product in tea_info:
+                # Extract price and remove non-numeric characters
+                price_str = tea_info[product]['narx']
+                price_per_item = int(price_str.replace(' ', '').replace(',', ''))
+                
+                total_per_item = price_per_item * quantity
+                cart_message += f"{product}: {quantity} x {price_per_item} so'm = {total_per_item} so'm\n"
+                total_price += total_per_item
+            elif product in salads_info:
+                # Extract price and remove non-numeric characters
+                price_str = salads_info[product]['narx']
+                price_per_item = int(price_str.replace(' ', '').replace(',', ''))
+                
+                total_per_item = price_per_item * quantity
+                cart_message += f"{product}: {quantity} x {price_per_item} so'm = {total_per_item} so'm\n"
+                total_price += total_per_item
+            elif product in cake_info:
+                # Extract price and remove non-numeric characters
+                price_str = drink_info[product]['narx']
+                price_per_item = int(price_str.replace(' ', '').replace(',', ''))
+                
+                total_per_item = price_per_item * quantity
+                cart_message += f"{product}: {quantity} x {price_per_item} so'm = {total_per_item} so'm\n"
+                total_price += total_per_item
+        
+        cart_message += f"\nJami narxi: {total_price} so'm"
+        await message.answer(cart_message)
     else:
-        await message.answer("Your cart is empty.")
+        await message.answer("Sizning savatingiz bo'sh.")
 
 
 # Main function
