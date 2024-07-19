@@ -1,6 +1,6 @@
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
-from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardButton, InlineKeyboardMarkup
 from asyncio import run
 from states import *
 from data import *
@@ -724,8 +724,7 @@ async def handle_quantity(message: types.Message, state: FSMContext):
     # Update the state data
     await state.update_data(user_data)
 
-    await message.answer(f"{quantity} ta {product_name} kartingizga qo'shildi")
-
+    await message.answer(f"{quantity} ta {product_name} savatingizga qo'shildi")
 
 @dp.message(lambda message: message.text in [t("cart", message.from_user.id)])
 async def show_cart(message: types.Message, state: FSMContext):
@@ -737,7 +736,7 @@ async def show_cart(message: types.Message, state: FSMContext):
     # Check if the user's cart exists and is not empty
     if user_id in user_data and 'cart' in user_data[user_id] and user_data[user_id]['cart']:
         total_price = 0
-        cart_message = "Bu kart:\n"
+        cart_message = "Bu savatingiz:\n"
         
         for product, quantity in user_data[user_id]['cart'].items():
             if product in product_info:
@@ -782,9 +781,26 @@ async def show_cart(message: types.Message, state: FSMContext):
                 total_price += total_per_item
         
         cart_message += f"\nJami narxi: {total_price} so'm"
-        await message.answer(cart_message)
+        keyboard = ReplyKeyboardMarkup(
+            keyboard=[
+                [KeyboardButton(text="Empty Cart")],
+            ],
+            resize_keyboard=True
+        )
+
+        await message.answer(cart_message, reply_markup=keyboard)
     else:
         await message.answer("Sizning savatingiz bo'sh.")
+        
+@dp.message(lambda message: message.text == "Empty Cart")
+async def empty_cart(message: types.Message, state: FSMContext):
+    user_id = message.from_user.id
+    
+    # Clear the user's cart in the state
+    await state.update_data({user_id: {'cart': {}}})
+
+    await message.answer("Savatingiz tozalandi")
+
 
 
 # Main function
@@ -811,6 +827,7 @@ async def main():
     dp.message.register(show_cart)
     dp.message.register(handle_bosh_menyu)
     dp.message.register(handle_official)
+    dp.message.register(empty_cart)
 
     # Start polling
     await dp.start_polling(bot)
