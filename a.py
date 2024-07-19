@@ -491,9 +491,6 @@ def get_official_keyboard(user_id):
     return ReplyKeyboardMarkup(
         keyboard=[
             [
-                KeyboardButton(text=t("contact", user_id),request_contact=True)
-            ],
-            [
                 KeyboardButton(text=t("back", user_id)),
                 KeyboardButton(text=t("main_menu", user_id)),
             ],
@@ -522,7 +519,7 @@ async def handle_buyurtma_berish(message: types.Message):
 
 @dp.message(lambda message: message.text in [t("official", message.from_user.id)])
 async def handle_official(message: types.Message):
-    await message.answer("Raqamingizni kiriting", reply_markup=get_official_keyboard(message.from_user.id))
+    await message.answer("Dostavka uchun raqam: +998917745577", reply_markup=get_official_keyboard(message.from_user.id))
 
 # Category handlers
 @dp.message(lambda message: message.text in [t("meal", message.from_user.id)])
