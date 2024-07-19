@@ -799,7 +799,7 @@ async def empty_cart(message: types.Message, state: FSMContext):
     # Clear the user's cart in the state
     await state.update_data({user_id: {'cart': {}}})
 
-    await message.answer("Savatingiz tozalandi")
+    await message.answer("Savatingiz tozalandi", reply_markup=get_keyboard(user_id))
 
 
 
