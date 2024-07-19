@@ -96,7 +96,7 @@ def get_keyboard(user_id):
                 KeyboardButton(text=t("order", user_id)),
             ],
             [
-                KeyboardButton(text=t("cart", user_id)),
+                KeyboardButton(text=t("official", user_id)),
                 KeyboardButton(text=t("settings", user_id))
             ],
             [
